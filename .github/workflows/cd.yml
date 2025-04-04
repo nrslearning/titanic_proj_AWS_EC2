@@ -13,15 +13,15 @@ jobs:
 
     steps:
       - name: Pull Docker Image
-        env: 
-          DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
-        run: sudo docker pull $DOCKER_USER/titanic_proj_aws_ec2:latest
+        # env: 
+        #   DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
+        run: sudo docker pull ${{ secrets.DOCKER_USERNAME }}/titanic_proj_aws_ec2:latest
     
       - name: Delete Old Docker Container
         run: sudo docker rm -f titanic_proj_aws_ec2-container || true
     
       - name: Run Docker Container
-        env: 
-          DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
-        run: sudo docker run -it -d -p 8001:8001 --name titanic_proj_aws_ec2-container $DOCKER_USER/titanic_proj_aws_ec2:latest
+        # env: 
+        #   DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
+        run: sudo docker run -it -d -p 8001:8001 --name titanic_proj_aws_ec2-container ${{ secrets.DOCKER_USERNAME }}/titanic_proj_aws_ec2:latest
 
